@@ -93,7 +93,7 @@ public abstract class AbstractTestNGController implements TestSuiteController {
      *             if any required arguments are missing or invalid for some reason
      */
     void validateTestRunArgs( Document testRunArgs )
-                    throws Exception {
+                    throws IllegalArgumentException {
         if ( null == testRunArgs || !testRunArgs.getDocumentElement().getNodeName().equals( "properties" ) ) {
             throw new IllegalArgumentException( "Input is not an XML properties document." );
         }
