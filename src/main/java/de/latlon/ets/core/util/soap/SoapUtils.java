@@ -60,9 +60,12 @@ public final class SoapUtils {
      * @param source
      *            source, never <code>null</code>
      * @return {@link SOAPPart} instance
+     *
+     * @throws SOAPException
+     *             if a soap exception occurs
      */
     public static SOAPPart convertToSoapPart( Source source )
-                    throws SOAPException {
+                            throws SOAPException {
         MessageFactory factory = MessageFactory.newInstance( SOAPConstants.SOAP_1_1_PROTOCOL ); // TODO change this to
                                                                                                 // SOAP 1.2
         SOAPMessage message = factory.createMessage();

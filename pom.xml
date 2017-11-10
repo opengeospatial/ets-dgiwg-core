@@ -1,12 +1,19 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>de.latlon</groupId>
+  <groupId>org.opengis.cite</groupId>
   <artifactId>ets-dgiwg-core</artifactId>
   <version>0.4-SNAPSHOT</version>
   <name>ets-dgiwg-core</name>
   <description>Provides common assertions and utilities for DGIWG test suites.</description>
   <url>https://github.com/opengeospatial/ets-dgiwg-core</url>
+
+  <parent>
+    <groupId>org.opengis.cite</groupId>
+    <artifactId>ets-common</artifactId>
+    <version>9</version>
+  </parent>
+
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -18,16 +25,19 @@
     <name>Open Geospatial Consortium</name>
     <url>http://www.opengeospatial.org</url>
   </organization>
+
   <scm>
     <url>https://github.com/opengeospatial/ets-dgiwg-core</url>    
     <connection>scm:git:https://github.com/opengeospatial/ets-dgiwg-core.git</connection>    
     <developerConnection>scm:git:git@github.com:opengeospatial/ets-dgiwg-core.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
+
   <issueManagement>
     <system>GitHub Issue Tracker</system>
     <url>https://github.com/opengeospatial/ets-dgiwg-core/issues</url>
   </issueManagement>
+
   <developers>
     <developer>
       <name>D. Stenger</name>
@@ -110,6 +120,7 @@
           <version>2.5.3</version>
           <configuration>
             <autoVersionSubmodules>true</autoVersionSubmodules>
+            <tagNameFormat>@{project.version}</tagNameFormat>
           </configuration>
         </plugin>
         <plugin>
@@ -177,12 +188,11 @@
     <dependency>
         <groupId>org.opengis.cite.teamengine</groupId>
         <artifactId>teamengine-spi</artifactId>
-        <version>4.10</version>
+        <version>5.0</version>
     </dependency>
     <dependency>
         <groupId>org.opengis.cite</groupId>
         <artifactId>schema-utils</artifactId>
-        <version>1.8</version>
     </dependency>
     <dependency>
         <groupId>com.sun.jersey</groupId>
@@ -193,13 +203,11 @@
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.12</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>1.10.19</version>
         <scope>test</scope>
       </dependency>
   </dependencies>
