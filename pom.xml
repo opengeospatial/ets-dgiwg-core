@@ -3,7 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.opengis.cite</groupId>
   <artifactId>ets-dgiwg-core</artifactId>
-  <version>0.5-SNAPSHOT</version>
+  <!-- <version>0.5-SNAPSHOT</version> -->
+  <version>0.4</version>
   <name>ets-dgiwg-core</name>
   <description>Provides common assertions and utilities for DGIWG test suites.</description>
   <url>https://github.com/opengeospatial/ets-dgiwg-core</url>
@@ -188,7 +189,8 @@
     <dependency>
         <groupId>org.opengis.cite.teamengine</groupId>
         <artifactId>teamengine-spi</artifactId>
-        <version>5.0</version>
+        <!-- <version>5.0</version> -->
+        <version>5.4</version>
     </dependency>
     <dependency>
         <groupId>org.opengis.cite</groupId>
