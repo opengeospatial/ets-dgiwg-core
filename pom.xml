@@ -163,13 +163,6 @@
             <relativizeDecorationLinks>false</relativizeDecorationLinks>
           </configuration>
         </plugin>
-        <plugin>
-          <artifactId>maven-scm-publish-plugin</artifactId>
-          <version>1.1</version>
-          <configuration>
-            <scmBranch>gh-pages</scmBranch>
-          </configuration>
-        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -291,10 +284,6 @@
       <id>sonatype-nexus-staging</id>
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
-    <site>
-      <id>site</id>
-      <url>scm:git:git@github.com:opengeospatial/ets-dgiwg-core.git</url>
-    </site>
   </distributionManagement>
 
 </project>

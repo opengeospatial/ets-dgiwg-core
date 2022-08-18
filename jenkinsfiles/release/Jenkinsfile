@@ -18,13 +18,6 @@ pipeline {
         sh 'mvn -Dresume=false release:prepare release:perform -Psign-artifacts-with-ogc,integration-tests,docker -DreleaseVersion=${releaseVersion} -DdevelopmentVersion=${developmentVersion}'
       }
     }
-    stage('Publication of site') {
-      steps{
-        sh 'mvn --version'
-        sh 'git checkout ${releaseVersion}'
-        sh 'mvn clean install site site:stage scm-publish:publish-scm'
-      }
-    }
     stage('Results') {
       steps{
         archive 'target/*'
