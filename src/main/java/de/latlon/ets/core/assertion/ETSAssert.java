@@ -173,18 +173,18 @@ public class ETSAssert {
 
 	}
 
-	/**
-	 * Asserts that the actual content type matches the expected content type.
-	 * @param headers The header of the response.
-	 * @param expectedContentType The expected content type, never <code>null</code>.
-	 */
-	public static void assertContentType(MultivaluedMap<String, String> headers, String expectedContentType) {
-		List<String> contentTypes = headers.get("Content-Type");
-		boolean containsContentType = containsContentType(contentTypes, expectedContentType);
-		String msg = String.format("Expected content type %s. but received %s", expectedContentType,
-				asString(contentTypes));
-		assertTrue(containsContentType, msg);
-	}
+        /**
+         * Asserts that the actual content type matches the expected content type.
+         * @param headers The header of the response.
+         * @param expectedContentType The expected content type, never <code>null</code>.
+         */
+        public static void assertContentType(MultivaluedMap<String, Object> headers, String expectedContentType) {
+                List<Object> contentTypes = headers.get("Content-Type");
+                boolean containsContentType = containsContentType(contentTypes, expectedContentType);
+                String msg = String.format("Expected content type %s. but received %s", expectedContentType,
+                                asString(contentTypes));
+                assertTrue(containsContentType, msg);
+        }
 
 	/**
 	 * Asserts that the string is a valid url.
@@ -254,18 +254,21 @@ public class ETSAssert {
 		return result;
 	}
 
-	private static boolean containsContentType(List<String> contentTypes, String expectedContentType) {
+	private static boolean containsContentType(List<Object> contentTypes, String expectedContentType) {
 		if (contentTypes != null)
-			for (String contentType : contentTypes) {
-				if (contentType.contains(expectedContentType))
+			for (Object contentType : contentTypes) {
+			        if(!(contentType instanceof String)) {
+			            return false;
+			        }
+				if (((String)contentType).contains(expectedContentType))
 					return true;
 			}
 		return false;
 	}
 
-	private static String asString(List<String> values) {
+	private static String asString(List<Object> values) {
 		StringBuilder sb = new StringBuilder();
-		for (String value : values) {
+		for (Object value : values) {
 			if (sb.length() > 0)
 				sb.append(", ");
 			sb.append(value);
