@@ -3,15 +3,12 @@ package de.latlon.ets.core.assertion;
 import static org.testng.Assert.assertTrue;
 
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.ws.rs.core.MultivaluedMap;
 import javax.xml.namespace.QName;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
@@ -25,6 +22,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import javax.xml.xpath.XPathFactoryConfigurationException;
 
+import org.glassfish.jersey.client.ClientConfig;
 import org.opengis.cite.validation.SchematronValidator;
 import org.opengis.cite.validation.ValidationErrorHandler;
 import org.testng.Assert;
@@ -33,16 +31,16 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.config.ClientConfig;
-import com.sun.jersey.api.client.config.DefaultClientConfig;
-
 import de.latlon.ets.core.error.ErrorMessage;
 import de.latlon.ets.core.error.ErrorMessageKey;
 import de.latlon.ets.core.util.NamespaceBindings;
 import de.latlon.ets.core.util.XMLUtils;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Invocation.Builder;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.Response;
 
 /**
  * Provides a set of custom assertion methods.
@@ -239,12 +237,12 @@ public class ETSAssert {
      */
     public static void assertUriIsResolvable( String url ) {
         try {
-            ClientConfig config = new DefaultClientConfig();
-            Client client = Client.create( config );
-            WebResource resource = client.resource( new URI( url ) );
-            ClientResponse response = resource.get( ClientResponse.class );
-            assertStatusCode( response.getStatus(), 200 );
-        } catch ( NullPointerException | URISyntaxException e ) {
+            Client client =  ClientBuilder.newClient(new ClientConfig());
+            WebTarget target = client.target(url);
+            Builder builder = target.request();
+            Response rsp = builder.buildGet().invoke();
+            assertStatusCode( rsp.getStatus(), 200 );
+        } catch ( NullPointerException e ) {
             String errorMsg = String.format( "Invalid URI %s: %s", url, e.getMessage() );
             throw new AssertionError( errorMsg );
         }

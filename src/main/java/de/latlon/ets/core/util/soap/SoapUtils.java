@@ -7,11 +7,6 @@ import java.util.logging.Level;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.soap.MessageFactory;
-import javax.xml.soap.SOAPConstants;
-import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPMessage;
-import javax.xml.soap.SOAPPart;
 import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMSource;
 
@@ -19,6 +14,11 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import de.latlon.ets.core.util.TestSuiteLogger;
+import jakarta.xml.soap.MessageFactory;
+import jakarta.xml.soap.SOAPConstants;
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPMessage;
+import jakarta.xml.soap.SOAPPart;
 
 /**
  * Utils for SOAP.

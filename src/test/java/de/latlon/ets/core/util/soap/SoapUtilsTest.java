@@ -2,15 +2,15 @@ package de.latlon.ets.core.util.soap;
 
 import static de.latlon.ets.core.util.soap.SoapUtils.convertToSoapPart;
 import static de.latlon.ets.core.util.soap.SoapUtils.readPayloadFromFile;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPPart;
 import javax.xml.transform.Source;
 
 import org.junit.Test;
+
+import jakarta.xml.soap.SOAPException;
+import jakarta.xml.soap.SOAPPart;
 
 /**
  * Tests for {@link SoapUtils}.
@@ -24,7 +24,7 @@ public class SoapUtilsTest {
                     throws Exception {
         Source payload = readPayloadFromFile( this.getClass().getResourceAsStream( "GetCapabilitiesRequest_example.xml" ) );
 
-        assertThat( payload, notNullValue() );
+        assertNotNull( payload);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -39,7 +39,7 @@ public class SoapUtilsTest {
         Source payload = readPayloadFromFile( this.getClass().getResourceAsStream( "GetCapabilitiesRequest_example.xml" ) );
         SOAPPart soapPart = convertToSoapPart( payload );
 
-        assertThat( soapPart, notNullValue() );
+        assertNotNull( soapPart);
         assertTrue( soapPart.getElementsByTagNameNS( "*", "GetCapabilities" ).getLength() > 0 );
     }
 
