@@ -19,7 +19,7 @@ public class ETSAssertTest {
 
 	@Test
 	public void testAssertContentType() {
-		MultivaluedMap<String, String> headers = new MultivaluedHashMap<>();
+		MultivaluedMap<String, Object> headers = new MultivaluedHashMap<>();
 		headers.add("Content-Type", "text/xml; charset");
 		ETSAssert.assertContentType(headers, "text/xml");
 	}
@@ -27,7 +27,7 @@ public class ETSAssertTest {
 	@Test
 	public void testAssertContentType_expectFalse() {
 		thrown.expect(AssertionError.class);
-		MultivaluedMap<String, String> headers = new MultivaluedHashMap<>();
+		MultivaluedMap<String, Object> headers = new MultivaluedHashMap<>();
 		headers.add("Content-Type", "text/html");
 		ETSAssert.assertContentType(headers, "text/xml");
 	}

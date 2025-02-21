@@ -173,18 +173,18 @@ public class ETSAssert {
 
 	}
 
-        /**
-         * Asserts that the actual content type matches the expected content type.
-         * @param headers The header of the response.
-         * @param expectedContentType The expected content type, never <code>null</code>.
-         */
-        public static void assertContentType(MultivaluedMap<String, Object> headers, String expectedContentType) {
-                List<Object> contentTypes = headers.get("Content-Type");
-                boolean containsContentType = containsContentType(contentTypes, expectedContentType);
-                String msg = String.format("Expected content type %s. but received %s", expectedContentType,
-                                asString(contentTypes));
-                assertTrue(containsContentType, msg);
-        }
+	/**
+	 * Asserts that the actual content type matches the expected content type.
+	 * @param headers The header of the response.
+	 * @param expectedContentType The expected content type, never <code>null</code>.
+	 */
+	public static void assertContentType(MultivaluedMap<String, Object> headers, String expectedContentType) {
+		List<Object> contentTypes = headers.get("Content-Type");
+		boolean containsContentType = containsContentType(contentTypes, expectedContentType);
+		String msg = String.format("Expected content type %s. but received %s", expectedContentType,
+				asString(contentTypes));
+		assertTrue(containsContentType, msg);
+	}
 
 	/**
 	 * Asserts that the string is a valid url.
@@ -257,10 +257,10 @@ public class ETSAssert {
 	private static boolean containsContentType(List<Object> contentTypes, String expectedContentType) {
 		if (contentTypes != null)
 			for (Object contentType : contentTypes) {
-			        if(!(contentType instanceof String)) {
-			            return false;
-			        }
-				if (((String)contentType).contains(expectedContentType))
+				if (!(contentType instanceof String)) {
+					return false;
+				}
+				if (((String) contentType).contains(expectedContentType))
 					return true;
 			}
 		return false;
