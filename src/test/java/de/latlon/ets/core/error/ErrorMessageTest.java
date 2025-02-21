@@ -16,12 +16,12 @@ import de.latlon.ets.core.error.ErrorMessageKey;
  */
 public class ErrorMessageTest {
 
-    @Test
-    public void testGet() {
-        for ( ErrorMessageKey errorMessageKey : ErrorMessageKey.values() ) {
-            String errorMessage = ErrorMessage.get( errorMessageKey );
-            assertThat( errorMessage, allOf( notNullValue(), not( is( "" ) ) ) );
-        }
-    }
+	@Test
+	public void testGet() {
+		for (ErrorMessageKey errorMessageKey : ErrorMessageKey.values()) {
+			String errorMessage = ErrorMessage.get(errorMessageKey);
+			assertThat(errorMessage, allOf(notNullValue(), not(is(""))));
+		}
+	}
 
 }

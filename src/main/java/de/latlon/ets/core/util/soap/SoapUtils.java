@@ -22,56 +22,51 @@ import jakarta.xml.soap.SOAPPart;
 
 /**
  * Utils for SOAP.
- * 
+ *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  */
 public final class SoapUtils {
 
-    private SoapUtils() {
-    }
+	private SoapUtils() {
+	}
 
-    /**
-     * Read payload from file.
-     * 
-     * @param resourceAsStream
-     *            resource as stream, never <code>null</code>
-     * @return source
-     */
-    public static Source readPayloadFromFile( InputStream resourceAsStream ) {
-        if ( resourceAsStream == null )
-            throw new IllegalArgumentException( "InputStream must not be null" );
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        Document document = null;
-        try {
-            DocumentBuilder builder;
-            builder = factory.newDocumentBuilder();
-            document = builder.parse( resourceAsStream );
-        } catch ( ParserConfigurationException e ) {
-            TestSuiteLogger.log( Level.SEVERE, "Failed to parse document", e );
-        } catch ( SAXException | IOException e ) {
-            TestSuiteLogger.log( Level.SEVERE, "Failed to read from stream", e );
-        }
-        return new DOMSource( document );
-    }
+	/**
+	 * Read payload from file.
+	 * @param resourceAsStream resource as stream, never <code>null</code>
+	 * @return source
+	 */
+	public static Source readPayloadFromFile(InputStream resourceAsStream) {
+		if (resourceAsStream == null)
+			throw new IllegalArgumentException("InputStream must not be null");
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		Document document = null;
+		try {
+			DocumentBuilder builder;
+			builder = factory.newDocumentBuilder();
+			document = builder.parse(resourceAsStream);
+		}
+		catch (ParserConfigurationException e) {
+			TestSuiteLogger.log(Level.SEVERE, "Failed to parse document", e);
+		}
+		catch (SAXException | IOException e) {
+			TestSuiteLogger.log(Level.SEVERE, "Failed to read from stream", e);
+		}
+		return new DOMSource(document);
+	}
 
-    /**
-     * Converts source to {@link SOAPPart} instance.
-     * 
-     * @param source
-     *            source, never <code>null</code>
-     * @return {@link SOAPPart} instance
-     *
-     * @throws SOAPException
-     *             if a soap exception occurs
-     */
-    public static SOAPPart convertToSoapPart( Source source )
-                            throws SOAPException {
-        MessageFactory factory = MessageFactory.newInstance( SOAPConstants.SOAP_1_1_PROTOCOL ); // TODO change this to
-                                                                                                // SOAP 1.2
-        SOAPMessage message = factory.createMessage();
-        SOAPPart soapPart = message.getSOAPPart();
-        soapPart.setContent( source );
-        return soapPart;
-    }
+	/**
+	 * Converts source to {@link SOAPPart} instance.
+	 * @param source source, never <code>null</code>
+	 * @return {@link SOAPPart} instance
+	 * @throws SOAPException if a soap exception occurs
+	 */
+	public static SOAPPart convertToSoapPart(Source source) throws SOAPException {
+		// TODO change this to SOAP 1.2
+		MessageFactory factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
+		SOAPMessage message = factory.createMessage();
+		SOAPPart soapPart = message.getSOAPPart();
+		soapPart.setContent(source);
+		return soapPart;
+	}
 
 }

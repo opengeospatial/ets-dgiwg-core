@@ -17,44 +17,40 @@ import de.latlon.ets.core.keyword.DfddKeywordMatcherFromFile;
  */
 public class DfddKeywordMatcherFromFileTest {
 
-    @Test
-    public void testContainsAtLeastOneDfddKeyword_emptyList()
-                    throws Exception {
-        DfddKeywordMatcher dfddKeywordMatcher = new DfddKeywordMatcherFromFile();
-        List<String> keywords = Collections.emptyList();
-        boolean containsAtLeastOneDfddKeyword = dfddKeywordMatcher.containsAtLeastOneDfddKeyword( keywords );
+	@Test
+	public void testContainsAtLeastOneDfddKeyword_emptyList() throws Exception {
+		DfddKeywordMatcher dfddKeywordMatcher = new DfddKeywordMatcherFromFile();
+		List<String> keywords = Collections.emptyList();
+		boolean containsAtLeastOneDfddKeyword = dfddKeywordMatcher.containsAtLeastOneDfddKeyword(keywords);
 
-        assertThat( containsAtLeastOneDfddKeyword, is( false ) );
-    }
+		assertThat(containsAtLeastOneDfddKeyword, is(false));
+	}
 
-    @Test
-    public void testContainsAtLeastOneDfddKeyword_listContainingOneDfddKeyword()
-                    throws Exception {
-        DfddKeywordMatcher dfddKeywordMatcher = new DfddKeywordMatcherFromFile();
-        List<String> keywords = Collections.singletonList( "Borehole" );
-        boolean containsAtLeastOneDfddKeyword = dfddKeywordMatcher.containsAtLeastOneDfddKeyword( keywords );
+	@Test
+	public void testContainsAtLeastOneDfddKeyword_listContainingOneDfddKeyword() throws Exception {
+		DfddKeywordMatcher dfddKeywordMatcher = new DfddKeywordMatcherFromFile();
+		List<String> keywords = Collections.singletonList("Borehole");
+		boolean containsAtLeastOneDfddKeyword = dfddKeywordMatcher.containsAtLeastOneDfddKeyword(keywords);
 
-        assertThat( containsAtLeastOneDfddKeyword, is( true ) );
-    }
+		assertThat(containsAtLeastOneDfddKeyword, is(true));
+	}
 
-    @Test
-    public void testContainsAtLeastOneDfddKeyword_listContainingTwoDfddOneOtherKeywords()
-                    throws Exception {
-        DfddKeywordMatcher dfddKeywordMatcher = new DfddKeywordMatcherFromFile();
-        List<String> keywords = Arrays.asList( "other", "Borehole", "Environmental monitoring facilities" );
-        boolean containsAtLeastOneDfddKeyword = dfddKeywordMatcher.containsAtLeastOneDfddKeyword( keywords );
+	@Test
+	public void testContainsAtLeastOneDfddKeyword_listContainingTwoDfddOneOtherKeywords() throws Exception {
+		DfddKeywordMatcher dfddKeywordMatcher = new DfddKeywordMatcherFromFile();
+		List<String> keywords = Arrays.asList("other", "Borehole", "Environmental monitoring facilities");
+		boolean containsAtLeastOneDfddKeyword = dfddKeywordMatcher.containsAtLeastOneDfddKeyword(keywords);
 
-        assertThat( containsAtLeastOneDfddKeyword, is( true ) );
-    }
+		assertThat(containsAtLeastOneDfddKeyword, is(true));
+	}
 
-    @Test
-    public void testContainsAtLeastOneDfddKeyword_listContainingTwoOtherKeywords()
-                    throws Exception {
-        DfddKeywordMatcher dfddKeywordMatcher = new DfddKeywordMatcherFromFile();
-        List<String> keywords = Arrays.asList( "other1", "other2" );
-        boolean containsAtLeastOneDfddKeyword = dfddKeywordMatcher.containsAtLeastOneDfddKeyword( keywords );
+	@Test
+	public void testContainsAtLeastOneDfddKeyword_listContainingTwoOtherKeywords() throws Exception {
+		DfddKeywordMatcher dfddKeywordMatcher = new DfddKeywordMatcherFromFile();
+		List<String> keywords = Arrays.asList("other1", "other2");
+		boolean containsAtLeastOneDfddKeyword = dfddKeywordMatcher.containsAtLeastOneDfddKeyword(keywords);
 
-        assertThat( containsAtLeastOneDfddKeyword, is( false ) );
-    }
+		assertThat(containsAtLeastOneDfddKeyword, is(false));
+	}
 
 }

@@ -14,39 +14,35 @@ import jakarta.xml.soap.SOAPPart;
 
 /**
  * Tests for {@link SoapUtils}.
- * 
+ *
  * @author <a href="mailto:stenger@lat-lon.de">Dirk Stenger</a>
  */
 public class SoapUtilsTest {
 
-    @Test
-    public void testReadPayloadFromFile()
-                    throws Exception {
-        Source payload = readPayloadFromFile( this.getClass().getResourceAsStream( "GetCapabilitiesRequest_example.xml" ) );
+	@Test
+	public void testReadPayloadFromFile() throws Exception {
+		Source payload = readPayloadFromFile(this.getClass().getResourceAsStream("GetCapabilitiesRequest_example.xml"));
 
-        assertNotNull( payload);
-    }
+		assertNotNull(payload);
+	}
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testReadPayloadFromFileWithNullShouldThrowException()
-                    throws Exception {
-        readPayloadFromFile( null );
-    }
+	@Test(expected = IllegalArgumentException.class)
+	public void testReadPayloadFromFileWithNullShouldThrowException() throws Exception {
+		readPayloadFromFile(null);
+	}
 
-    @Test
-    public void testConvertToSoapPartWithReadPayloadFromFile()
-                    throws Exception {
-        Source payload = readPayloadFromFile( this.getClass().getResourceAsStream( "GetCapabilitiesRequest_example.xml" ) );
-        SOAPPart soapPart = convertToSoapPart( payload );
+	@Test
+	public void testConvertToSoapPartWithReadPayloadFromFile() throws Exception {
+		Source payload = readPayloadFromFile(this.getClass().getResourceAsStream("GetCapabilitiesRequest_example.xml"));
+		SOAPPart soapPart = convertToSoapPart(payload);
 
-        assertNotNull( soapPart);
-        assertTrue( soapPart.getElementsByTagNameNS( "*", "GetCapabilities" ).getLength() > 0 );
-    }
+		assertNotNull(soapPart);
+		assertTrue(soapPart.getElementsByTagNameNS("*", "GetCapabilities").getLength() > 0);
+	}
 
-    @Test(expected = SOAPException.class)
-    public void testConvertToSoapPartWithNullShouldThrowException()
-                    throws Exception {
-        convertToSoapPart( null );
-    }
+	@Test(expected = SOAPException.class)
+	public void testConvertToSoapPartWithNullShouldThrowException() throws Exception {
+		convertToSoapPart(null);
+	}
 
 }
