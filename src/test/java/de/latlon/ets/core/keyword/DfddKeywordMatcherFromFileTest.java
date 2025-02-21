@@ -9,9 +9,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import de.latlon.ets.core.keyword.DfddKeywordMatcher;
-import de.latlon.ets.core.keyword.DfddKeywordMatcherFromFile;
-
 /**
  * @author <a href="mailto:goltz@lat-lon.de">Lyn Goltz</a>
  */
